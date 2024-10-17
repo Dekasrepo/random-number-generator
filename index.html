@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane's Rainbow Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 24px;
+        }
+        button {
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        input {
+            width: 60px;
+            padding: 5px;
+            margin: 5px;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jane's Rainbow Random Number Generator</h1>
+        <div>
+            <label for="min">Min:</label>
+            <input type="number" id="min" value="1">
+            <label for="max">Max:</label>
+            <input type="number" id="max" value="100">
+        </div>
+        <button onclick="generateRandomNumber()">Generate Random Number</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function generateRandomNumber() {
+            const min = parseInt(document.getElementById('min').value);
+            const max = parseInt(document.getElementById('max').value);
+            
+            if (isNaN(min) || isNaN(max) || min >= max) {
+                document.getElementById('result').textContent = "Please enter valid numbers (min < max)";
+                return;
+            }
+
+            const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+            document.getElementById('result').textContent = `Random Number: ${randomNumber}`;
+            
+            // Change text color randomly
+            const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.getElementById('result').style.color = randomColor;
+        }
+    </script>
+</body>
+</html>
